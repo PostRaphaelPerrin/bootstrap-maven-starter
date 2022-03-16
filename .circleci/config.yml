@@ -29,7 +29,7 @@ jobs:
       - persist_to_workspace:
           root: .     # relative path to our working directory
           paths:      # file globs which will be persisted to the workspace
-           - target/core-it-suite-2.1-SNAPSHOT.jar
+           - ./core-it-suite/target/core-it-suite-2.1-SNAPSHOT.jar
   docker-build-and-push:
     executor: docker/docker
     steps:
