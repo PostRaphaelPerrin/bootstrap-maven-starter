@@ -47,6 +47,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - docker-build-and-push
+      - docker-build-and-push:
           context:
             - TEST
