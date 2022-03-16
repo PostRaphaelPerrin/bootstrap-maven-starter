@@ -10,7 +10,6 @@ orbs:
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:
-    working_directory: /tmp/
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # Be sure to update the Docker image tag below to openjdk version of your application.
@@ -26,19 +25,16 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-      - run: |
-          set -xu
-          mkdir -p /tmp/artifacts
-          cp ./target/core-it-suite-2.1-SNAPSHOT.jar /tmp/artifacts/
-
-      # Then run your tests!
-      - run:
-          name: Test
-          command: mvn test
+      # save the files your deploy step needs
+      - save_workspace:
+          root: .     # relative path to our working directory
+          paths:      # file globs which will be persisted to the workspace
+           - target/core-it-suite-2.1-SNAPSHOT.jar
   docker-build-and-push:
-    working_directory: /tmp/
     executor: docker/docker
     steps:
+      - attach_workspace:
+          at: . # relative path to our working directory
       - setup_remote_docker
       - checkout
       - docker/check
