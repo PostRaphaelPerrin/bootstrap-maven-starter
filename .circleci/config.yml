@@ -35,8 +35,9 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
+      - run: mkdir /workspace
       - attach_workspace:
-          at: . # relative path to our working directory
+          at: /workspace # relative path to our working directory
       - docker/check
       - docker/build:
           image: swisspost/maven
