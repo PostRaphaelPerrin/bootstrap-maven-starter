@@ -30,9 +30,7 @@ jobs:
           name: Test
           command: mvn test
   docker-build-and-push:
-    docker:
-      # replace with your preferred image
-      - image: ubuntu:latest
+    executor: docker/docker
     steps:
       - setup_remote_docker
       - checkout
