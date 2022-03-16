@@ -2,7 +2,7 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 orbs:
-  docker-service-publish: storytel/docker-service-publish@1.0.0
+  docker: circleci/docker@2.0.3
 
 
 # Define a job to be invoked later in a workflow.
