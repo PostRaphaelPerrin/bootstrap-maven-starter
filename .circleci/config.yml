@@ -48,3 +48,5 @@ workflows:
     jobs:
       - build-and-test
       - docker-build-and-push
+          context:
+            - TEST
